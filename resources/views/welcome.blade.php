@@ -17,7 +17,7 @@
                 <div class="col-sm-12 col-md-4">
                     <h2>Vote</h2>
 
-                    <div class="alert alert-danger" role="alert">You already voted 5 times!</div>
+                    <div v-show="voteCount >= 5" class="alert alert-danger" role="alert">You already voted 5 times!</div>
 
                     <select class="form-control" v-model="category">
                         <option v-for="name in categories">@{{ name }}</option>
@@ -111,7 +111,7 @@
             }, 15000);
 
             // Load vote count
-            this.voteCount = localStorage.getItem('voteCount') || 0;
+            this.voteCount = parseInt(localStorage.getItem('voteCount')) || 0;
         },
 
         data: {
