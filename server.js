@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 const options = [
   'Transactions in Depth',
   'Worker Queues',
-  'RPC over Reds (depends on "Queues")',
+  'RPC over Redis (depends on "Queues")',
   'Lua Stored Procedures',
   'Distributed Locking (depends on "Lua Scripting")'
 ]
