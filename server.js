@@ -23,11 +23,11 @@ const options = [
 const initial = options.reduce((list, option) => list.concat([0, option]), [])
 redis.zadd('votes', 'nx', initial)
 
-app.get('/options', function (req, res) {
+app.get('/options', (req, res) => {
   res.json(options)
 })
 
-app.get('/votes', function (req, res) {
+app.get('/votes', (req, res) => {
   redis.zrevrangebyscore('votes', '+inf', 0, 'withscores', (_err, votes) => {
     let result = {}
     for (let i = 0; i < votes.length; i += 2) {
@@ -54,6 +54,8 @@ io.on('connection', (socket) => {
   })
 })
 
-http.listen(3000, () => {
-  console.log('Listening on Port 3000')
+const PORT = process.env.PORT || 3000
+
+http.listen(PORT, () => {
+  console.log(`Listening on Port ${PORT}`)
 })
